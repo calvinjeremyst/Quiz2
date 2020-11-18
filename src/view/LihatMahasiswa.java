@@ -24,7 +24,7 @@ public class LihatMahasiswa implements ActionListener {
     JLabel judul, lpilih;
     JButton tombol,tombol2;
     JTable jt;
-    JComboBox pilihan;
+    JComboBox pilihKode;
      
     public LihatMahasiswa(){
         ArrayList<Jurusan> jurusan = Controller.getKode();
@@ -40,8 +40,8 @@ public class LihatMahasiswa implements ActionListener {
         
         lpilih.setFont(new Font("Consolas", Font.PLAIN, 20));
         lpilih.setBounds(20, 160, 250, 50);
-        pilihan = new JComboBox();
-        pilihan.setBounds(270, 170, 150, 30);
+        pilihKode = new JComboBox();
+        pilihKode.setBounds(270, 170, 150, 30);
         
         tombol = new JButton("Table");
         tombol.setBounds(400, 360, 250, 30);
@@ -54,7 +54,7 @@ public class LihatMahasiswa implements ActionListener {
         tombol2.addActionListener(this);
         
         frame.add(lpilih);
-        frame.add(pilihan);
+        frame.add(pilihKode);
         frame.add(judul);
         frame.add(tombol);
         frame.add(tombol2);
@@ -63,7 +63,7 @@ public class LihatMahasiswa implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String pilihan = (String) this.pilihan.getSelectedItem();
+        String pilihan = (String) this.pilihKode.getSelectedItem();
         if(e.getActionCommand().equals("Table")){
             ArrayList<Mahasiswa> mahasiswa = Controller.getMahasiswa(pilihan);
             jt = new JTable();

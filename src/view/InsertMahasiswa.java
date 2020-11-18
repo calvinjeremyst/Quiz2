@@ -9,11 +9,7 @@ import controller.Controller;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -24,6 +20,7 @@ public class InsertMahasiswa implements ActionListener {
     JLabel judul,lnama,lnim,langkatan,lkode;
     JTextField nim,nama,angkatan;
     JButton tombol,tombol2,tombol3,tombol4;
+    JComboBox pilihKode;
     
     public InsertMahasiswa() {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -57,9 +54,11 @@ public class InsertMahasiswa implements ActionListener {
         angkatan.setFont(new Font("Consolas", Font.PLAIN, 20));
         angkatan.setBounds(270, 270, 150, 30);
         
-        lkode = new JLabel("Angkatan : ");
+        lkode = new JLabel("Kode Jurusan : ");
         lkode.setFont(new Font("Consolas", Font.PLAIN, 20));
         lkode.setBounds(20, 310, 250, 50);
+        pilihKode = new JComboBox();
+        pilihKode.setBounds(120,310,250,50);
         
         tombol = new JButton("Insert");
         tombol.setBounds(400, 360, 250, 30);
@@ -81,7 +80,7 @@ public class InsertMahasiswa implements ActionListener {
         frame.add(langkatan);
         frame.add(angkatan);
         frame.add(lkode);
-        //frame.add(kode);
+        frame.add(pilihKode);
     }
     
     @Override
@@ -89,10 +88,10 @@ public class InsertMahasiswa implements ActionListener {
         String nim = this.nim.getText();
         String nama = this.nama.getText();
         String angkatan = this.angkatan.getText();
-        //String kode = this.kode.getText();
+        String kode = (String) this.pilihKode.getSelectedItem();
                 
         if(e.getActionCommand().equals("Insert")){
-            if(Controller.insertMahasiswa(nim,nama,angkatan)){
+            if(Controller.insertMahasiswa(nim,nama,angkatan,kode)){
                 JOptionPane.showMessageDialog(null,"Data Berhasil Insert!");
                 new MainMenu();
                 frame.dispose();

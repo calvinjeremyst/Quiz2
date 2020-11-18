@@ -93,7 +93,7 @@ public class Controller {
         }
     }
     
-    public static boolean insertMahasiswa(String nim, String nama, String angkatan) {
+    public static boolean insertMahasiswa(String nim, String nama, String angkatan, String kode) {
         conn.connect();
         String query = "INSERT INTO mahasiswa VALUES(?,?,?,?)";
         try {
@@ -101,6 +101,7 @@ public class Controller {
             stmt.setString(1, nim);
             stmt.setString(2, nama);
             stmt.setString(3, angkatan);
+            stmt.setString(4, kode);
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
