@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Model;
+import model.Jurusan;
+import model.Mahasiswa;
 
 /**
  *
@@ -18,62 +19,72 @@ import model.Model;
  */
 public class Controller {
     static DatabaseHandler conn = new DatabaseHandler();
-
-    // SELECT ALL from table users
-    public static ArrayList<Model> select() {
-        ArrayList<Model> models = new ArrayList<>();
+    
+    public static ArrayList<Jurusan> getAllJurusan() {
+        ArrayList<Jurusan> jurusan2 = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM ?";
+        String query = "SELECT * FROM jurusan";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                Model model = new Model();
-                model(rs.getInt(""));
-                model(rs.getString(""));
-                model(rs.getString(""));
-                model(rs.getString(""));
-                model(rs.getInt(""));
-                models.add(model);
+                Jurusan jurusan = new Jurusan();
+                jurusan.setKode(rs.getString("kodeJurusan"));
+                jurusan.setNama(rs.getString("namaJurusan"));
+                jurusan2.add(jurusan);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return (models);
+        return (jurusan2);
     }
-    
-    // SELECT WHERE
-    public static Model where(String x, String y) {
+       
+    public static ArrayList<Jurusan> getKode() {
+        ArrayList<Jurusan> jurusan2 = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM ? WHERE x='" + x + "'&&y='" + y + "'";
-        Model model = new Model();
+        String query = "SELECT * FROM jurusan";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                model(rs.getInt("ID"));
-                model(rs.getString("Name"));
-                model(rs.getString("Address"));
-                model(rs.getString("Phone"));
-                model(rs.getInt("Age"));
+                Jurusan jurusan = new Jurusan();
+                jurusan.setKode(rs.getString("kodeJurusan"));
+                jurusan2.add(jurusan);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return (model);
+        return (jurusan2);
     }
     
-    // INSERT
-    public static boolean insert(Model model) {
+    public static ArrayList<Mahasiswa> getMahasiswa(String kode) {
+        ArrayList<Mahasiswa> mhss = new ArrayList<>();
         conn.connect();
-        String query = "INSERT INTO x VALUES(?,?,?,?,?)";
+        String query = "SELECT * FROM mahasiswa WHERE kodeJurusan='" + kode + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Mahasiswa mhs = new Mahasiswa();
+                mhs.setNim(rs.getString("nim"));
+                mhs.setNama(rs.getString("nama"));
+                mhs.setAngkatan(rs.getInt("angkatan"));
+                mhs.setKode_jurusan(rs.getString("kodeJurusan"));
+                mhss.add(mhs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (mhss);
+    }
+    
+    public static boolean insertJurusan(String kode, String nama) {
+        conn.connect();
+        String query = "INSERT INTO jurusan VALUES(?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setInt(1, model);
-            stmt.setString(2, model);
-            stmt.setString(3, model);
-            stmt.setString(4, model);
-            stmt.setString(5, model);
+            stmt.setString(1, kode);
+            stmt.setString(2, nama);
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
@@ -82,30 +93,15 @@ public class Controller {
         }
     }
     
-    // UPDATE
-    public static boolean update(Model model) {
+    public static boolean insertMahasiswa(String nim, String nama, String angkatan) {
         conn.connect();
-        String query = "UPDATE ? SET x='" + model + "', "
-                + "Address='" + model + "', "
-                + "Phone='" + model + "' "
-                + " WHERE ID='" + model + "'";
+        String query = "INSERT INTO mahasiswa VALUES(?,?,?,?)";
         try {
-            Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
-            return (true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return (false);
-        }
-    }
-
-    // DELETE
-    public static boolean delete(String x) {
-        conn.connect();
-        String query = "DELETE FROM ? WHERE x='" + x + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setString(1, nim);
+            stmt.setString(2, nama);
+            stmt.setString(3, angkatan);
+            stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
             e.printStackTrace();

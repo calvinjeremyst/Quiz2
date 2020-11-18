@@ -11,7 +11,6 @@ package controller;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
@@ -19,7 +18,6 @@ public class DatabaseHandler {
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost/db_quiz";
-//  private String url = "jdbc:mysql://localhost/db_quiz?serverTimezone=" + TimeZone.getDefault().getID();
     private String username = "root";
     private String password = "";
 
