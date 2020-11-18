@@ -19,14 +19,15 @@ import model.Mahasiswa;
  *
  * @author user
  */
-public class LihatMahasiswa implements ActionListener {
+public class LihatMahasiswaKode implements ActionListener {
     JFrame frame = new JFrame("Quiz 2");
     JLabel judul, lpilih;
     JButton tombol,tombol2;
     JTable jt;
     JComboBox pilihKode;
+    String[] array = {"IF","SI","AK"};
      
-    public LihatMahasiswa(){
+    public LihatMahasiswaKode(){
         ArrayList<Jurusan> jurusan = Controller.getKode();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
@@ -38,9 +39,10 @@ public class LihatMahasiswa implements ActionListener {
         judul.setFont(new Font("Consolas", Font.PLAIN, 32));
         judul.setBounds(600,20,500,100);
         
+        lpilih = new JLabel("Pilihan");
         lpilih.setFont(new Font("Consolas", Font.PLAIN, 20));
         lpilih.setBounds(20, 160, 250, 50);
-        pilihKode = new JComboBox();
+        pilihKode = new JComboBox(array);
         pilihKode.setBounds(270, 170, 150, 30);
         
         tombol = new JButton("Table");

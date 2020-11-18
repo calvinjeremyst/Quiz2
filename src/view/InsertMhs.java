@@ -15,14 +15,15 @@ import javax.swing.*;
  *
  * @author user
  */
-public class InsertMahasiswa implements ActionListener {
+public class InsertMhs implements ActionListener {
     JFrame frame = new JFrame("Quiz 2");
     JLabel judul,lnama,lnim,langkatan,lkode;
     JTextField nim,nama,angkatan;
     JButton tombol,tombol2,tombol3,tombol4;
     JComboBox pilihKode;
+    String[] array = {"IF","SI","AK"};
     
-    public InsertMahasiswa() {
+    public InsertMhs() {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
@@ -57,8 +58,8 @@ public class InsertMahasiswa implements ActionListener {
         lkode = new JLabel("Kode Jurusan : ");
         lkode.setFont(new Font("Consolas", Font.PLAIN, 20));
         lkode.setBounds(20, 310, 250, 50);
-        pilihKode = new JComboBox();
-        pilihKode.setBounds(120,310,250,50);
+        pilihKode = new JComboBox(array);
+        pilihKode.setBounds(170,310,100,50);
         
         tombol = new JButton("Insert");
         tombol.setBounds(400, 360, 250, 30);

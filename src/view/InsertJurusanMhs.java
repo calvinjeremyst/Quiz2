@@ -15,13 +15,13 @@ import javax.swing.*;
  *
  * @author user
  */
-public class InsertJurusan implements ActionListener {
+public class InsertJurusanMhs implements ActionListener {
     JFrame frame = new JFrame("Quiz 2");
     JLabel judul,lkode,lnama;
     JTextField kode,nama;
     JButton tombol,tombol2,tombol3,tombol4;
     
-    public InsertJurusan() {
+    public InsertJurusanMhs() {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);

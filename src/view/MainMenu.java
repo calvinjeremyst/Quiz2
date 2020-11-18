@@ -60,16 +60,16 @@ public class MainMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Insert Data Jurusan Baru")){
-            new InsertJurusan();
+            new InsertJurusanMhs();
             frame.dispose();
         } else if(e.getActionCommand().equals("Lihat Data Semua Jurusan")){
-            new LihatJurusan();
+            new LihatJurusanSemua();
             frame.dispose();
         } else if(e.getActionCommand().equals("Insert Data Mahasiswa Baru")){
-            new InsertMahasiswa();
+            new InsertMhs();
             frame.dispose();
         } else if(e.getActionCommand().equals("Lihat Data Mahasiswa Per Jurusan")){
-            new LihatMahasiswa();
+            new LihatMahasiswaKode();
             frame.dispose();
         }
         

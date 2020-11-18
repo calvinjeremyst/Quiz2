@@ -18,13 +18,13 @@ import model.Jurusan;
  *
  * @author user
  */
-public class LihatJurusan implements ActionListener {
+public class LihatJurusanSemua implements ActionListener {
     JFrame frame = new JFrame("Quiz 2");
     JLabel judul;
     JButton tombol;
     JTable jt;
     
-    public LihatJurusan(){
+    public LihatJurusanSemua(){
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
