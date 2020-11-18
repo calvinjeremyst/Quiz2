@@ -10,10 +10,10 @@ package model;
  * @author user
  */
 public class Mahasiswa {
-    String nim; 
-    String nama; 
-    int angkatan;
-    String kode_jurusan;
+    private String nim; 
+    private String nama; 
+    private int angkatan;
+    private String kode_jurusan;
     
     public Mahasiswa(){
         

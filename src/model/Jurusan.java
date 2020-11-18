@@ -10,8 +10,8 @@ package model;
  * @author user
  */
 public class Jurusan {
-    String kode;
-    String nama; 
+    private String kode;
+    private String nama; 
 
     public Jurusan(String kode, String nama) {
         this.kode = kode;
